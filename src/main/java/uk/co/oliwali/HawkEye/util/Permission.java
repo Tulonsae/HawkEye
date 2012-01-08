@@ -5,6 +5,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.PermissionUser;
+//import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import uk.co.oliwali.HawkEye.HawkEye;
@@ -161,7 +163,7 @@ public class Permission {
 	public static boolean inGroup(String world, String player, String group) {
 		switch (handler) {
 			case PERMISSIONSEX:
-				return permissionsEx.getUser(player).inGroup(group, true);
+				return permissionsEx.getUser(player).inGroup(group);
 			case PERMISSIONS:
 				return permissionPlugin.inGroup(world, player, group);
 		}

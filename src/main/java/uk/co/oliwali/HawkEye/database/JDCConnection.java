@@ -18,17 +18,51 @@ import java.sql.Struct;
 import java.util.Map;
 import java.util.Properties;
 
+import java.util.concurrent.Executor;
+
 public class JDCConnection implements Connection
 {
 	private final Connection conn;
 	private boolean inuse;
 	private long timestamp;
 
+        private int ms = 50;
+        String schema = "schema";
+
 	JDCConnection(Connection connection) {
 		this.conn = connection;
 		inuse = false;
 		timestamp = 0;
 	}
+
+        // implement this to get it to compile
+        @Override
+        public void abort(Executor executor) {
+        }
+
+        // implement this to get it to compile
+        @Override
+        public int getNetworkTimeout() {
+            return ms;
+        }
+
+        // implement this to get it to compile
+        @Override
+        public void setNetworkTimeout(Executor executor, int ms) {
+            this.ms = ms;
+        }
+
+        // implement this to get it to compile
+        @Override
+        public String getSchema() {
+            return schema;
+        }
+
+        // implement this to get it to compile
+        @Override
+        public void setSchema(String name) {
+            schema = name;
+        }
 
 	@Override
 	public void clearWarnings() throws SQLException {
