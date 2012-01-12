@@ -26,42 +26,35 @@ public class JDCConnection implements Connection
 	private boolean inuse;
 	private long timestamp;
 
-        private int ms = 50;
-        String schema = "schema";
-
 	JDCConnection(Connection connection) {
 		this.conn = connection;
 		inuse = false;
 		timestamp = 0;
 	}
 
-        // implement this to get it to compile
         @Override
-        public void abort(Executor executor) {
+        public void abort(Executor executor) throws SQLException {
+            conn.abort(executor);
         }
 
-        // implement this to get it to compile
         @Override
-        public int getNetworkTimeout() {
-            return ms;
+        public int getNetworkTimeout() throws SQLException {
+            return conn.getNetworkTimeout();
         }
 
-        // implement this to get it to compile
         @Override
-        public void setNetworkTimeout(Executor executor, int ms) {
-            this.ms = ms;
+        public void setNetworkTimeout(Executor executor, int ms) throws SQLException {
+            conn.setNetworkTimeout(executor, ms);
         }
 
-        // implement this to get it to compile
         @Override
-        public String getSchema() {
-            return schema;
+        public String getSchema() throws SQLException {
+            return conn.getSchema();
         }
 
-        // implement this to get it to compile
         @Override
-        public void setSchema(String name) {
-            schema = name;
+        public void setSchema(String name) throws SQLException {
+            conn.setSchema(name);
         }
 
 	@Override
