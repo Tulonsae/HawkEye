@@ -4,19 +4,21 @@
 
   <groupId>uk.co.oliwali.HawkEye</groupId>
   <artifactId>HawkEye</artifactId>
-  <version>1.05b-Tul</version>
+  <version>1.05b-Tul-0.1</version>
   <packaging>jar</packaging>
 
-  <name>TulSys</name>
+  <name>HawkEye</name>
   <description>Bukkit data logging plugin and web-based data browser.</description>
   <url>https://github.com/Tulonsae/HawkEye</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.plugin.author>Tulonsae</project.plugin.author>
-    <project.plugin.depend></project.plugin.depend>
+    <project.plugin.name>${project.name}</project.plugin.name>
+    <project.plugin.author>oliverw92, modified by Tulonsae</project.plugin.author>
+    <project.plugin.depend>[WorldEdit,PermissionsEx,Permissions,GroupManager,bPermissions]</project.plugin.depend>
     <project.plugin.main>${project.groupId}.${project.name}</project.plugin.main>
     <project.plugin.version>${project.version}-${buildNumber}</project.plugin.version>
+    <project.plugin.description>Track those griefers like a bird of prey!</project.plugin.description>
   </properties>
 
   <scm>

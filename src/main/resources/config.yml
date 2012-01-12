@@ -1,7 +1,5 @@
+version: ${project.plugin.version}
 log:
-    lava-bucket: true
-    water-bucket: true
-    painting-place: true
     pvp-death: true
     mob-death: true
     other-death: true
@@ -9,59 +7,64 @@ log:
     chat: true
     join: true
     quit: true
+    teleport: true
     door-interact: true
     open-container: true
     container-transaction: true
     item-pickup: true
     item-drop: true
     button: true
-    teleport: true
     lever: true
+    explosion: true
+    flint-steel: true
+    lava-bucket: true
+    water-bucket: true
+    water-flow: false
+    lava-flow: false
     sign-place: true
     sign-break: true
+    painting-place: true
     painting-break: true
-    flint-steel: true
     block-place: true
     block-break: true
     block-burn: true
     block-fade: true
     block-form: true
+    tree-grow: true
     leaf-decay: true
     mushroom-grow: true
-    tree-grow: true
-    water-flow: false
-    lava-flow: false
-    explosion: true
     enderman-pickup: true
     enderman-place: true
     other: true
 general:
     max-lines: 0
-    log-item-drops-on-death: false
-    cleanse-period: 20m
-    cleanse-age: 0
-    delete-data-on-rollback: true
-    log-ip-addresses: true
+    check-for-updates: true
     debug: false
+    log-ip-addresses: true
+    cleanse: false
+    cleanse-period: 20m
+    cleanse-age: '0'
+    delete-data-on-rollback: true
     max-radius: 0
     tool-block: '17'
-    default-here-radius: 5
     default-tool-command: ''
-    check-for-updates: true
+    default-here-radius: 5
+    log-item-drops-on-death: false
 mysql:
-    hawkeye-table: hawkeye
-    port: 3306
-    player-table: hawk_players
-    username: root
-    world-table: hawk_worlds
     hostname: localhost
-    max-connections: 10
+    port: 3306
+    username: root
     password: ''
     database: minecraft
+    max-connections: 10
+    schema-version: ''
+    hawkeye-table: hawkeye
+    player-table: hawk_players
+    world-table: hawk_worlds
+    version-table: hawk_version
 ignore-worlds:
 - thisworldisignored
 - soisthisone
-version: 1.0.5b
 command-filter:
 - /login
 - /restartsrv
