@@ -1,0 +1,31 @@
+Definition of the schema:
+
+schema_version
+
+  id		int(11)		not null auto_increment primary key
+
+  name		varchar(25)	not null unique key
+
+  description	varchar(255)	not null
+
+  row_created	datetime	not null
+  row_updated	datetime	not null
+
+
+schema_tables
+
+  version_id	int(11)		not null
+
+  prefix_name	varchar(25)
+
+  table_name	varchar(55)	not null
+
+  description	varchar(255)	not null
+
+  row_created	datetime	not null
+  row_updated	datetime	not null
+
+  key		table_index	(prefix_name, table_name)
+
+  foreign key	id		(version_id)
+				references schema_version (id)

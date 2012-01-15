@@ -17,6 +17,7 @@ import uk.co.oliwali.HawkEye.util.BlockUtil;
 import uk.co.oliwali.HawkEye.util.Config;
 import uk.co.oliwali.HawkEye.util.Util;
 import uk.co.oliwali.HawkEye.database.JDCConnection;
+import uk.co.oliwali.HawkEye.database.SchemaManager;
 import uk.co.oliwali.HawkEye.entry.DataEntry;
 
 /**
@@ -44,14 +45,25 @@ public class DataManager extends TimerTask {
         
         connections = new ConnectionManager(Config.DbUrl, Config.DbUser, Config.DbPassword);
         getConnection().close();
-        
-        //Check tables and update player/world lists
-        if (!checkTables())
-            throw new Exception();
-        if (!updateDbLists())
-            throw new Exception();
 
-        //Start cleansing utility, if enabled
+        // check tables
+        SchemaManager schemaManager = new SchemaManager();
+        if (!schemaManager.checkSchemaTables(connections)) {
+            Util.severe("Error while checking schema tables.");
+            throw new Exception();
+        }
+        if (!checkTables()) {
+            Util.severe("Error while checking data tables.");
+            throw new Exception();
+        }
+
+        // update player/world lists
+        if (!updateDbLists()) {
+            Util.severe("Error while updating player/world lists.");
+            throw new Exception();
+        }
+
+        // start cleansing utility, if enabled
         if (Config.Cleanse) {
             try {
                 new CleanseUtil();
@@ -274,7 +286,7 @@ public class DataManager extends TimerTask {
     }
     
     /**
-     * Checks that all tables are up to date and exist
+     * Checks that all tables are up to date and exist.
      * @return true on success, false on failure
      */
     private boolean checkTables() {
@@ -285,6 +297,9 @@ public class DataManager extends TimerTask {
             conn = getConnection();
             stmnt = conn.createStatement();
             DatabaseMetaData dbm = conn.getMetaData();
+
+            // Check if schema version tables exists
+            // If not, this is an oliwali HawkEye schema
             
             //Check if tables exist
             if (!JDBCUtil.tableExists(dbm, Config.DbPlayerTable)) {

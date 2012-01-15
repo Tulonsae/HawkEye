@@ -57,11 +57,8 @@ mysql:
     password: ''
     database: minecraft
     max-connections: 10
-    schema-version: ''
-    hawkeye-table: hawkeye
-    player-table: hawk_players
-    world-table: hawk_worlds
-    version-table: hawk_version
+    schema-version: '1.0'
+    table-prefix: hawk_
 ignore-worlds:
 - thisworldisignored
 - soisthisone

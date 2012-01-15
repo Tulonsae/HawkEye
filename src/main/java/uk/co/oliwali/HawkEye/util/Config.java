@@ -36,12 +36,16 @@ public class Config {
     public static String DbUser;
     public static String DbPassword;
     public static String DbDatabase;
+    public static int PoolSize;
+    public static String DbVersion;
+    public static String DbPrefix;
     public static String DbHawkEyeTable;
     public static String DbPlayerTable;
     public static String DbWorldTable;
-    public static int PoolSize;
     
     private static Configuration config;
+    private static String dbHost;
+    private static int dbPort;
     
     /**
      * Loads the config from file and validates the data.
@@ -73,14 +77,20 @@ public class Config {
         LogIpAddresses = config.getBoolean("general.log-ip-addresses");
         DeleteDataOnRollback = config.getBoolean("general.delete-data-on-rollback");
         LogDeathDrops = config.getBoolean("general.log-item-drops-on-death");
+
+        // Load mysql values
+        dbHost = config.getString("mysql.hostname");
+        dbPort = config.getInt("mysql.port");
         DbUser = config.getString("mysql.username");
         DbPassword = config.getString("mysql.password");
-        DbUrl = "jdbc:mysql://" + config.getString("mysql.hostname") + ":" + config.getInt("mysql.port") + "/" + config.getString("mysql.database");
         DbDatabase = config.getString("mysql.database");
+        DbUrl = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + DbDatabase;
+        PoolSize = config.getInt("mysql.max-connections");
+        DbVersion = config.getString("mysql.schema-version");
+        DbPrefix = config.getString("mysql.table-prefix");
         DbHawkEyeTable = config.getString("mysql.hawkeye-table");
         DbPlayerTable = config.getString("mysql.player-table");
         DbWorldTable = config.getString("mysql.world-table");
-        PoolSize = config.getInt("mysql.max-connections");
         
     }
     
