@@ -1,4 +1,6 @@
-version: ${project.plugin.version}
+version:
+    plugin:
+    schema:
 log:
     pvp-death: true
     mob-death: true
@@ -38,13 +40,13 @@ log:
     other: true
 general:
     max-lines: 0
-    check-for-updates: true
+    check-for-updates: false
     debug: false
     log-ip-addresses: true
     cleanse: false
     cleanse-period: 20m
     cleanse-age: '0'
-    delete-data-on-rollback: true
+    delete-data-on-rollback: false
     max-radius: 0
     tool-block: '17'
     default-tool-command: ''
@@ -53,18 +55,15 @@ general:
 mysql:
     hostname: localhost
     port: 3306
-    username: root
+    username: minecraft
     password: ''
-    database: minecraft
+    database: hawkeye
     max-connections: 10
-    schema-version: ''
     hawkeye-table: hawkeye
     player-table: hawk_players
     world-table: hawk_worlds
-    version-table: hawk_version
 ignore-worlds:
-- thisworldisignored
-- soisthisone
+- ignorethisworld
 command-filter:
 - /login
 - /restartsrv
