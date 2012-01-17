@@ -1,3 +1,0 @@
-1.0.5b
-1597
-1.0 UPDATE: * Fixed lots of bugs  * Added rebuild command  * Added world ignoring  * Added tree and mushroom logging  * Re-enable flow logging
