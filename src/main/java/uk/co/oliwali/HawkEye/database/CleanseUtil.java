@@ -135,7 +135,7 @@ public class CleanseUtil extends TimerTask {
         SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         date = form.format(cal.getTime());
 
-	Util.info("Scheduling database delete of records older than " + date.toString());        
+    Util.info("Scheduling database delete of records older than " + date.toString());        
     }
 
 }
