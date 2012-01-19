@@ -115,14 +115,14 @@ public class SearchQuery extends Thread {
         //Check if location is exact or a range
         Util.debug("Building location");
         if (parser.minLoc != null) {
-            args.add("(x BETWEEN " + parser.minLoc.getX() + " AND " + parser.maxLoc.getX() + ")");
-            args.add("(y BETWEEN " + parser.minLoc.getY() + " AND " + parser.maxLoc.getY() + ")");
-            args.add("(z BETWEEN " + parser.minLoc.getZ() + " AND " + parser.maxLoc.getZ() + ")");
+            args.add(getRange("x", parser.minLoc.getBlockX(), parser.maxLoc.getBlockX()));
+            args.add(getRange("y", parser.minLoc.getBlockY(), parser.maxLoc.getBlockY()));
+            args.add(getRange("z", parser.minLoc.getBlockZ(), parser.maxLoc.getBlockZ()));
         }
         else if (parser.loc != null) {
-            args.add("x = " + parser.loc.getX());
-            args.add("y = " + parser.loc.getY());
-            args.add("z = " + parser.loc.getZ());
+            args.add("x = " + parser.loc.getBlockX());
+            args.add("y = " + parser.loc.getBlockY());
+            args.add("z = " + parser.loc.getBlockZ());
         }
         
         //Build the filters into SQL form
@@ -195,6 +195,23 @@ public class SearchQuery extends Thread {
         
         Util.debug("Search complete");
         
+    }
+
+    /**
+     * Get a range of locations as a sql string
+     * @author Tulonsae
+     */
+    private String getRange(String coord, int min, int max) {
+        StringBuffer range = new StringBuffer("(" + coord + " in (");
+
+        for (int i = min; i < max; i++) {
+            range.append(i);
+            range.append(",");
+        }
+        range.append(max);
+        range.append("))");
+
+        return range.toString();
     }
     
     /**
