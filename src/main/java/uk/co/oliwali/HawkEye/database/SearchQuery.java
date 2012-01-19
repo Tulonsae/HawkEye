@@ -154,6 +154,8 @@ public class SearchQuery extends Thread {
         Statement stmnt = null;
         
         try {
+            // log sql statement
+            Config.writeSqlLog("SearchQuery: " + sql);
             
             //Execute query
             stmnt = conn.createStatement();

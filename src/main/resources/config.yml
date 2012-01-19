@@ -62,6 +62,8 @@ mysql:
     hawkeye-table: hawkeye
     player-table: hawk_players
     world-table: hawk_worlds
+    debug: false
+    debug-logfile: sql.log
 ignore-worlds:
 - ignorethisworld
 command-filter:

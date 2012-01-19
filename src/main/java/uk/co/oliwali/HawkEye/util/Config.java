@@ -39,6 +39,8 @@ public class Config {
     public static String DbHawkEyeTable;
     public static String DbPlayerTable;
     public static String DbWorldTable;
+    public static boolean DbDebug;
+    public static String DbLogFile;
     public static int PoolSize;
     
     private static Configuration config;
@@ -52,7 +54,8 @@ public class Config {
         
         config = plugin.getConfig().getRoot();
         config.options().copyDefaults(true);
-        config.set("version", plugin.version);
+        config.set("version.plugin", plugin.version);
+        config.set("version.schema", "1.0");
         plugin.saveConfig();
 
         //Load values
@@ -80,6 +83,8 @@ public class Config {
         DbHawkEyeTable = config.getString("mysql.hawkeye-table");
         DbPlayerTable = config.getString("mysql.player-table");
         DbWorldTable = config.getString("mysql.world-table");
+        DbDebug = config.getBoolean("mysql.debug");
+        DbLogFile = config.getString("mysql.debug-logfile");
         PoolSize = config.getInt("mysql.max-connections");
         
     }
