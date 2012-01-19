@@ -197,14 +197,14 @@ public class Util {
     }
     
     /**
-     * Turns supplied location into a simplified (1 decimal point) version
+     * Turns supplied location into a simplified (whole number) version
      * @param location location to simplify
      * @return Location
      */
     public static Location getSimpleLocation(Location location) {
-        location.setX((double)Math.round(location.getX() * 10) / 10);
-        location.setY((double)Math.round(location.getY() * 10) / 10);
-        location.setZ((double)Math.round(location.getZ() * 10) / 10);
+        location.setX((double)location.getBlockX());
+        location.setY((double)location.getBlockY());
+        location.setZ((double)location.getBlockZ());
         return location;
     }
     
