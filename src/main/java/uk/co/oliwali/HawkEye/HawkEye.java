@@ -68,7 +68,7 @@ public class HawkEye extends JavaPlugin {
      */
     public void onDisable() {
         DataManager.close();
-        Config.closeSqlLog();
+        Util.closeSqlLog();
         Util.info("Version " + version + " disabled!");
     }
     
@@ -94,7 +94,7 @@ public class HawkEye extends JavaPlugin {
         new SessionManager();
 
         // start sql log
-        Config.initSqlLog();
+        Util.initSqlLog(this);
         
         // initiate database connection
         try {
