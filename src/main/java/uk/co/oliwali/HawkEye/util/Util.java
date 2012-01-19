@@ -59,6 +59,7 @@ public class Util {
             try {
                 sqlLog = new FileWriter(sqlLogfile, true);
                 // todo - add a datestamp
+                Util.info("Sql log [" + Config.DbLogFile + "] turned on.");
                 writeSqlLog("Started sql logging...");
             } catch (IOException e) {
                 log.warning("Error initializing sql log file [" + Config.DbLogFile + "]: " + e);
@@ -86,7 +87,8 @@ public class Util {
     public static void writeSqlLog(String message) {
         if (Config.DbDebug) {
             try {
-                sqlLog.write(message);
+                sqlLog.write(message + System.lineSeparator());
+                sqlLog.flush();
             } catch (IOException e) {
                 log.warning("Error writing to sql log file [" + Config.DbLogFile + "]: " + e);
             }
