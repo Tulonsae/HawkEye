@@ -117,7 +117,9 @@ public class DataManager extends TimerTask {
         JDCConnection conn = null;
         try {
             conn = getConnection();
-            ResultSet res = conn.createStatement().executeQuery("SELECT * FROM `" + Config.DbHawkEyeTable + "` WHERE `data_id` = " + id);
+            String sql = "SELECT * FROM `" + Config.DbHawkEyeTable + "` WHERE `data_id` = " + id;
+            Util.writeSqlLog("DataManager.getEntry: " + sql);
+            ResultSet res = conn.createStatement().executeQuery(sql);
             res.next();
             return createEntryFromRes(res);
         } catch (Exception ex) {
